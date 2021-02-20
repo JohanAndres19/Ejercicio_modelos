@@ -1,24 +1,18 @@
-<html lang="en">
-<head>
-
-</head>
-<body>
-    <header>
-        <h1>Cursos Vacionales </h1>
-        <h2>Bienvenido al Centro vacacional elija una de las opciones</h2>
-        
-    </header>
+{% extends 'base/base.html'%}
+{%block container1%}
+    <h1>Cursos Vacionales </h1>
+    <h2>Bienvenido al Centro vacacional elija una de las opciones</h2>
+{%endblock%}
+{% block container%}
     <main>
         <div>
             {% for i in imagenes %}
                 <img src="{{i}}">
             {% endfor %}    
-            
         </div>
         <div>
-            <button>Agregar Cursos</button>
+            <button id="botonA">Agregar Cursos</button>
+            <script src="/static/Js/app_cursos.js"></script>
         </div>
-
     </main>
-</body>
-</html>
+{%endblock%}

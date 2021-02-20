@@ -6,6 +6,7 @@ $(document).ready(function(){
             type : 'POST',
             sucess: function(response){
                 console.log(response);
+                $(location).attr('href','/singin'); 
             },
             error: function(error){
                 console.log(error);

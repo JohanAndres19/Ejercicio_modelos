@@ -1,6 +1,9 @@
-from flask  import Flask, render_template,request
+from flask  import Flask, render_template,request,redirect
 import json
+from flask.helpers import url_for
+
 app = Flask(__name__)
+from imagenes import *
 
 @app.route('/')
 def Index():
@@ -8,22 +11,29 @@ def Index():
 
 @app.route('/cursos')
 def Cursos():
-    imagenes=['/static/img/baloncesto.jfif','/static/img/futbol.jfif','/static/img/karate.jfif','/static/img/natacion.jfif','/static/img/patinaje.jfif','/static/img/squash.webp','/static/img/Taekwondo.jfif','/static/img/Tenis_campo.jfif','/static/img/ultimate.jfif']
-    return render_template('cursos.html',imagenes=imagenes)
+    return render_template('cursos.html',imagenes=caragar_imagenes().get_imagenes())
 
 @app.route('/login',methods=['GET','POST'])
 def login():
+    if request.method =='POST':
+        return redirect(url_for('singin'))
     return render_template('login.html')
+
 
 @app.route('/ajax-login',methods=['POST'])
 def ajax_login():
-    aux= "hola mundo"
-    print(request.form)
-    return json.dumps(aux)
+    aux= request.form["username"]
+    if aux== "Johan Aguirre":
+        print("si entra")
+        """
+        direccion='/singin'
+        return json.dumps(direccion) """      
+        return json.dumps("/singin") 
 
 @app.route('/singin')
 def singin():
-    return "hola mundo"
+    return render_template('singin.html',imagenes=caragar_imagenes().get_imagenes())
+
 
 if __name__ == "__main__":
     app.run(port=8000, debug=True )

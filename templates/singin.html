@@ -1,0 +1,13 @@
+{%extends 'base/base.html'%}
+{%block container1%}
+    <h1 class="titulo">Cursos Vacionales </h1>
+    <h2>Bienvenido al Centro vacacional elija una de las opciones</h2>
+    <img src="static/img/vacaiones.gif">
+{%endblock%}
+{% block container%}
+    <main>
+        {%for i in imagenes%}
+          <input type="image" src="{{i}}">
+        {%endfor%}
+    </main>
+{%endblock%}
