@@ -1,0 +1,24 @@
+<html lang="en">
+<head>
+
+</head>
+<body>
+    <header>
+        <h1>Cursos Vacionales </h1>
+        <h2>Bienvenido al Centro vacacional elija una de las opciones</h2>
+        
+    </header>
+    <main>
+        <div>
+            {% for i in imagenes %}
+                <img src="{{i}}">
+            {% endfor %}    
+            
+        </div>
+        <div>
+            <button>Agregar Cursos</button>
+        </div>
+
+    </main>
+</body>
+</html>
