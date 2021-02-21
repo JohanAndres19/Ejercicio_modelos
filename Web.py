@@ -1,8 +1,10 @@
 from flask  import Flask, render_template,request,redirect
 import json
+from flask.globals import session
 from flask.helpers import url_for
-
+from Base import *
 app = Flask(__name__)
+app.secret_key='my_secret_key'
 from imagenes import *
 
 @app.route('/')
@@ -16,7 +18,12 @@ def Cursos():
 @app.route('/login',methods=['GET','POST'])
 def login():
     if request.method =='POST':
-        return redirect(url_for('singin'))
+        print(request.form)
+        username=request.form["username"]
+        password=request.form["password"]
+        if consulta().Consultar(username,password):
+         session["username"]= request.form["username"]
+         return redirect(url_for('singin'))
     return render_template('login.html')
 
 
@@ -32,7 +39,10 @@ def ajax_login():
 
 @app.route('/singin')
 def singin():
-    return render_template('singin.html',imagenes=caragar_imagenes().get_imagenes())
+    if "username" in session:
+        return render_template('singin.html',imagenes=caragar_imagenes().get_imagenes())
+    else:
+        return redirect(url_for('login'))    
 
 
 if __name__ == "__main__":
