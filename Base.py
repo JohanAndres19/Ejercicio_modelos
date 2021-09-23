@@ -12,7 +12,6 @@ class consulta:
 
     def Consultar(self,username=None,password=None):
         try:
-            print("esta entrad")
             cursor=self.conexion1.cursor()
             cursor.execute("select * from usuario where k_nombreu =%s and k_contraseÑa=%s",(username,password))
             lista=cursor.fetchall()

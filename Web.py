@@ -3,6 +3,7 @@ import json
 from flask.globals import session
 from flask.helpers import url_for
 from Base import *
+
 app = Flask(__name__)
 app.secret_key='my_secret_key'
 from imagenes import *
@@ -12,13 +13,12 @@ def Index():
     return render_template('index.html')
 
 @app.route('/cursos')
-def Cursos():
+def Cursos():   
     return render_template('cursos.html',imagenes=caragar_imagenes().get_imagenes())
 
 @app.route('/login',methods=['GET','POST'])
 def login():
     if request.method =='POST':
-        print(request.form)
         username=request.form["username"]
         password=request.form["password"]
         if consulta().Consultar(username,password):
